@@ -14,7 +14,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://E:/spigot_test/plugins/worldedit-bukkit-7.2.0-rc2-dist.jar!/" />
+          <root url="jar://E:/spigot_test/plugins/worldguard-bukkit-7.0.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -23,13 +23,13 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://E:/spigot_test/plugins/worldguard-bukkit-7.0.4.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/worldedit-bukkit-7.2.1-dist.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.guava:guava:21.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
