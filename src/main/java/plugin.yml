@@ -1,0 +1,6 @@
+name: PortalBlocker
+version: 1.0
+author: Elmah
+main: pl.elmah.portalblocker.PortalBlocker
+api-version: 1.16
+depend: [WorldGuard]
