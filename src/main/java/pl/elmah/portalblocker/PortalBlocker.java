@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PortalBlocker extends JavaPlugin {
 
     private static PortalBlocker Instance;
-    private final String version = "1.1";
+    private final String version = "1.2";
     private StateFlag ObsidianPlaceFlag;
     private boolean FlagsRegistered;
 
