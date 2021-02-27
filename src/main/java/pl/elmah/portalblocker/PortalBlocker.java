@@ -1,57 +1,37 @@
 package pl.elmah.portalblocker;
 
-import com.sk89q.worldguard.WorldGuard;
-import com.sk89q.worldguard.protection.flags.StateFlag;
-import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
-import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PortalBlocker extends JavaPlugin {
-
     private static PortalBlocker Instance;
-    private final String version = "1.2";
-    private StateFlag ObsidianPlaceFlag;
-    private boolean FlagsRegistered;
+    private final String Version = "2.0";
+    /* Stores most recent player that use that used lighter (flint and steel).
+    Because spigot API does not allow to access player that ignited the portal
+    this field will be used to store player that used lighter and then in portal
+    create event this will be used as player that created portal
+     */
+    private Player FirePlacePlayer;
 
-    @Override
-    public void onLoad() {
-        FlagsRegistered = registerWorldGuardFlags();
-    }
+    public static final String ENABLE_PORTAL_CREATION_PERMISSION = "portalblocker.enable";
 
     @Override
     public void onEnable() {
         Instance = this;
-        getLogger().info("PortalBlocker version " + version + " initialized");
+        this.getServer().getPluginManager().registerEvents(new PortalCreateListener(), this);
+        this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
+        getLogger().info("PortalBlocker version " + Version + " initialized");
+    }
 
-        if (true == FlagsRegistered) {
-            //Register events listeners
-            this.getServer().getPluginManager().registerEvents(new BlockEventListener(), this);
-        }
+    public Player getFirePlacePlayer() {
+        return FirePlacePlayer;
+    }
 
+    public void setFirePlacePlayer(Player firePlacePlayer) {
+        FirePlacePlayer = firePlacePlayer;
     }
 
     public static PortalBlocker getInstance() {
         return Instance;
-    }
-
-    public StateFlag getObsidianPlaceFlag() {
-        return this.ObsidianPlaceFlag;
-    }
-
-    private boolean registerWorldGuardFlags() {
-        boolean result = true;
-        FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
-        StateFlag flag = new StateFlag("obsidian-place", true);
-
-        try {
-            registry.register(flag);
-            this.ObsidianPlaceFlag = flag;
-        } catch (FlagConflictException e) {
-            result = false;
-            this.getLogger().warning("Cannot register flag: " + flag.getName() +
-                    " It is conflicting with flag registered by other plugin");
-        }
-
-        return result;
     }
 }
