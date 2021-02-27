@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PortalBlocker extends JavaPlugin {
     private static PortalBlocker Instance;
-    private final String Version = "2.0";
+    private final String Version = "2.1";
     /* Stores most recent player that use that used lighter (flint and steel).
     Because spigot API does not allow to access player that ignited the portal
     this field will be used to store player that used lighter and then in portal
@@ -14,6 +14,7 @@ public class PortalBlocker extends JavaPlugin {
     private Player FirePlacePlayer;
 
     public static final String ENABLE_PORTAL_CREATION_PERMISSION = "portalblocker.enable";
+    public static final String DENY_ACTION_MESSAGE = "You can't do that";
 
     @Override
     public void onEnable() {

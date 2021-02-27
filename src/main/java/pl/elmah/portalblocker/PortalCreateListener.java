@@ -12,13 +12,17 @@ This class handles event invoked after nether portal creation
 public class PortalCreateListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onNetherPortalCreate(PortalCreateEvent e) {
-        //By default event is cancelled. Only certain players can create portal
-        e.setCancelled(true);
-        Player eventSourcePlayer = PortalBlocker.getInstance().getFirePlacePlayer();
+        if (PortalCreateEvent.CreateReason.FIRE == e.getReason()) {
+            //By default event is cancelled. Only certain players can create portal
+            e.setCancelled(true);
+            Player eventSourcePlayer = PortalBlocker.getInstance().getFirePlacePlayer();
 
-        if (PortalCreateEvent.CreateReason.FIRE == e.getReason() && null != eventSourcePlayer) {
-            if (eventSourcePlayer.isOp() || eventSourcePlayer.hasPermission(PortalBlocker.ENABLE_PORTAL_CREATION_PERMISSION)) {
-                e.setCancelled(false);
+            if (null != eventSourcePlayer) {
+                if (eventSourcePlayer.isOp() || eventSourcePlayer.hasPermission(PortalBlocker.ENABLE_PORTAL_CREATION_PERMISSION)) {
+                    e.setCancelled(false);
+                } else {
+                    eventSourcePlayer.sendMessage(PortalBlocker.getInstance().DENY_ACTION_MESSAGE);
+                }
             }
         }
     }
