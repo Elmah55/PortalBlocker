@@ -4,13 +4,11 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
 
-public class BlockPlaceListener implements Listener {
+public class BlockIgniteListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onBlockPlace(BlockPlaceEvent e) {
-        if (Material.FIRE == e.getBlock().getType()) {
+    public void onBlockIgnite(BlockIgniteEvent e) {
             PortalBlocker.getInstance().setFirePlacePlayer(e.getPlayer());
-        }
     }
 }

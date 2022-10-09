@@ -17,12 +17,20 @@ public class PortalCreateListener implements Listener {
             e.setCancelled(true);
             Player eventSourcePlayer = PortalBlocker.getInstance().getFirePlacePlayer();
 
+            //Portal ignited by player
             if (null != eventSourcePlayer) {
                 if (eventSourcePlayer.isOp() || eventSourcePlayer.hasPermission(PortalBlocker.ENABLE_PORTAL_CREATION_PERMISSION)) {
                     e.setCancelled(false);
                 } else {
                     eventSourcePlayer.sendMessage(PortalBlocker.getInstance().DENY_ACTION_MESSAGE);
                 }
+
+                PortalBlocker.getInstance().setFirePlacePlayer(null);
+            }
+            //Portal ignited by entity
+            else
+            {
+
             }
         }
     }

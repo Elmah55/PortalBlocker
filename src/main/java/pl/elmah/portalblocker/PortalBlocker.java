@@ -20,7 +20,7 @@ public class PortalBlocker extends JavaPlugin {
     public void onEnable() {
         Instance = this;
         this.getServer().getPluginManager().registerEvents(new PortalCreateListener(), this);
-        this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
+        this.getServer().getPluginManager().registerEvents(new BlockIgniteListener(), this);
 
         PluginDescriptionFile desc = getDescription();
         String initInfo = String.format("%s version %s enabled",
