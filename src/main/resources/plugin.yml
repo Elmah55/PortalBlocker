@@ -1,5 +1,5 @@
 name: PortalBlocker
-version: 2.2
+version: ${project.version}
 author: Elmah
 main: pl.elmah.portalblocker.PortalBlocker
 api-version: 1.17
