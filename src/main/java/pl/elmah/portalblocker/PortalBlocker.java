@@ -1,5 +1,6 @@
 package pl.elmah.portalblocker;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,15 +13,16 @@ public class PortalBlocker extends JavaPlugin {
     create event this will be used as player that created portal
      */
     private Player FirePlacePlayer;
+    private PluginConfiguration PluginConfig;
 
-    public static final String ENABLE_PORTAL_CREATION_PERMISSION = "portalblocker.enable";
-    public static final String DENY_ACTION_MESSAGE = "You can't do that";
+    public static final String PERMISSION_ENABLE_PORTAL_CREATION = "portalblocker.enable";
 
     @Override
     public void onEnable() {
         Instance = this;
         this.getServer().getPluginManager().registerEvents(new PortalCreateListener(), this);
         this.getServer().getPluginManager().registerEvents(new BlockIgniteListener(), this);
+        this.PluginConfig = loadConfig();
 
         PluginDescriptionFile desc = getDescription();
         String initInfo = String.format("%s version %s enabled",
@@ -37,7 +39,23 @@ public class PortalBlocker extends JavaPlugin {
         FirePlacePlayer = firePlacePlayer;
     }
 
+    public PluginConfiguration getPluginConfig() {
+        return PluginConfig;
+    }
+
     public static PortalBlocker getInstance() {
         return Instance;
+    }
+
+    private PluginConfiguration loadConfig() {
+        this.saveDefaultConfig();
+        FileConfiguration fileConfig = this.getConfig();
+
+        boolean entitiesCanCreatePortals = fileConfig.getBoolean("entities-can-create-portals", false);
+        String denyActionMessage = fileConfig.getString("deny-action-message", "You can't do that");
+
+        PluginConfiguration pluginConfig = new PluginConfiguration(denyActionMessage, entitiesCanCreatePortals);
+
+        return pluginConfig;
     }
 }
