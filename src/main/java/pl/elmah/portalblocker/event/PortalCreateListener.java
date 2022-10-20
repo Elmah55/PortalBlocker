@@ -1,10 +1,12 @@
-package pl.elmah.portalblocker;
+package pl.elmah.portalblocker.event;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
+import pl.elmah.portalblocker.core.PluginConfiguration;
+import pl.elmah.portalblocker.core.PortalBlocker;
 
 /*
 This class handles event invoked after nether portal creation

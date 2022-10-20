@@ -1,4 +1,4 @@
-package pl.elmah.portalblocker;
+package pl.elmah.portalblocker.core;
 
 public class PluginConfiguration
 {
