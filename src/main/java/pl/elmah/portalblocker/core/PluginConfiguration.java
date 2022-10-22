@@ -1,7 +1,9 @@
 package pl.elmah.portalblocker.core;
 
-public class PluginConfiguration
-{
+/**
+ * Stores plugin configuration loaded from config.yml file
+ */
+public class PluginConfiguration {
     private String DenyActionMessage;
     private boolean EntitiesCanCreatePortals;
 

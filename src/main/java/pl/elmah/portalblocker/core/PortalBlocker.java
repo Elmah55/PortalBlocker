@@ -2,21 +2,13 @@ package pl.elmah.portalblocker.core;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.elmah.portalblocker.event.BlockIgniteListener;
+import pl.elmah.portalblocker.event.BukkitEventListener;
 import pl.elmah.portalblocker.event.EventHandler;
-import pl.elmah.portalblocker.event.PortalCreateListener;
 
 public class PortalBlocker extends JavaPlugin {
     private static PortalBlocker Instance;
-    /* Stores most recent player that use that used lighter (flint and steel).
-    Because spigot API does not allow accessing player that ignited the portal
-    this field will be used to store player that used lighter and then in portal
-    create event this will be used as player that created portal
-     */
-    private Player FirePlacePlayer;
     private PluginConfiguration PluginConfig;
     private CommandHandler DefaultCommandHandler;
 
@@ -34,14 +26,6 @@ public class PortalBlocker extends JavaPlugin {
                 desc.getName(),
                 desc.getVersion());
         getLogger().info(initInfo);
-    }
-
-    public Player getFirePlacePlayer() {
-        return FirePlacePlayer;
-    }
-
-    public void setFirePlacePlayer(Player firePlacePlayer) {
-        FirePlacePlayer = firePlacePlayer;
     }
 
     public PluginConfiguration getPluginConfig() {
@@ -69,8 +53,7 @@ public class PortalBlocker extends JavaPlugin {
 
         DefaultCommandHandler.ConfigReloadRequestedEvent.AddListener(configReloadRequestedEventHandler);
 
-        this.getServer().getPluginManager().registerEvents(new PortalCreateListener(), this);
-        this.getServer().getPluginManager().registerEvents(new BlockIgniteListener(), this);
+        this.getServer().getPluginManager().registerEvents(new BukkitEventListener(), this);
     }
 
     private void LoadConfiguration() {
