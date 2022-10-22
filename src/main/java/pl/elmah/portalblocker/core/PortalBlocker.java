@@ -10,8 +10,6 @@ import pl.elmah.portalblocker.event.EventHandler;
 import pl.elmah.portalblocker.event.PortalCreateListener;
 
 public class PortalBlocker extends JavaPlugin {
-    public static final String PERMISSION_ENABLE_PORTAL_CREATION = "portalblocker.enable";
-
     private static PortalBlocker Instance;
     /* Stores most recent player that use that used lighter (flint and steel).
     Because spigot API does not allow accessing player that ignited the portal
@@ -20,11 +18,12 @@ public class PortalBlocker extends JavaPlugin {
      */
     private Player FirePlacePlayer;
     private PluginConfiguration PluginConfig;
-    private CommandHandler DefaultCommandHandler = new CommandHandler();
+    private CommandHandler DefaultCommandHandler;
 
     @Override
     public void onEnable() {
         Instance = this;
+        DefaultCommandHandler = new CommandHandler();
 
         RegisterEventHandlers();
         RegisterCommands();

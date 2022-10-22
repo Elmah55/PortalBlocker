@@ -1,5 +1,8 @@
 name: PortalBlocker
 version: ${project.version}
 author: Elmah
-main: pl.elmah.portalblocker.PortalBlocker
-api-version: 1.17
+main: pl.elmah.portalblocker.core.PortalBlocker
+description: Plugin prevents creation of nether portals
+commands:
+  portalblocker:
+    description: Base command

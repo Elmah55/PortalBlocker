@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Command handler for base command of plugin. Other commands are invoked by using base command with arguments
+ */
 public class CommandHandler implements CommandExecutor {
     public final EventSource<CommandSender> ConfigReloadRequestedEvent = new EventSource<>();
 
@@ -50,17 +53,21 @@ public class CommandHandler implements CommandExecutor {
     }
 
     private void versionCommandHandler(CommandSender sender, String label, String[] args) {
-        PluginDescriptionFile desc = PortalBlocker.getInstance().getDescription();
-        String versionMsg = String.format("%s by %s. Version %s",
-                desc.getName(),
-                desc.getAuthors().get(0),
-                desc.getVersion());
+        if (true == PermissionManager.HasPermission(sender, PermissionType.COMMAND_VERSION, true)) {
+            PluginDescriptionFile desc = PortalBlocker.getInstance().getDescription();
+            String versionMsg = String.format("%s by %s. Version %s",
+                    desc.getName(),
+                    desc.getAuthors().get(0),
+                    desc.getVersion());
 
-        sender.sendMessage(versionMsg);
+            sender.sendMessage(versionMsg);
+        }
     }
 
     private void reloadCommandHandler(CommandSender sender, String label, String[] args) {
-        ConfigReloadRequestedEvent.Invoke(sender);
+        if (true == PermissionManager.HasPermission(sender, PermissionType.COMMAND_RELOAD, true)) {
+            ConfigReloadRequestedEvent.Invoke(sender);
+        }
     }
 
     private void OnCommandNotFound(CommandSender sender) {
@@ -106,4 +113,3 @@ public class CommandHandler implements CommandExecutor {
         CommandUsageMsg = msgBuilder.toString();
     }
 }
-

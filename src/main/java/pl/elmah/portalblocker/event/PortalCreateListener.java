@@ -5,6 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
+import pl.elmah.portalblocker.core.PermissionManager;
+import pl.elmah.portalblocker.core.PermissionType;
 import pl.elmah.portalblocker.core.PluginConfiguration;
 import pl.elmah.portalblocker.core.PortalBlocker;
 
@@ -22,10 +24,9 @@ public class PortalCreateListener implements Listener {
 
             //Portal ignited by player
             if (null != eventSourcePlayer) {
-                if (eventSourcePlayer.isOp() || eventSourcePlayer.hasPermission(PortalBlocker.PERMISSION_ENABLE_PORTAL_CREATION)) {
+                if (PermissionManager.HasPermission(
+                        eventSourcePlayer, PermissionType.NETHER_PORTAL_CREATION, true)) {
                     e.setCancelled(false);
-                } else {
-                    eventSourcePlayer.sendMessage(config.getDenyActionMessage());
                 }
 
                 PortalBlocker.getInstance().setFirePlacePlayer(null);
