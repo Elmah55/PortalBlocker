@@ -26,3 +26,6 @@ found in config file default value specified above will be used.
 
 ## Building
 PortalBlocker can be built using Maven. Use `mvn package` command from root folder of repository. Output .jar file will be placed in `target` directory. More information about using Maven can be found [here](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
+
+## Notes
+Plugin has been tested on Spigot 1.18.2 but should work on older versions as well.
