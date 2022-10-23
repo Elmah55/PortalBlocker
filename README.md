@@ -1,3 +1,7 @@
+<p align="center">
+<img src="assets/Logo.png" />
+</p>
+
 # PortalBlocker
 Spigot plugin that prevents creating nether portals by players.
 
